@@ -1,0 +1,19 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Events collection: append-only (ECEF guarantee)
+    match /events/{eventId} {
+      allow create: if true;
+      allow update, delete: if false;
+      allow read: if true;
+    }
+
+    // Sessions collection: read-only after creation
+    match /sessions/{sessionId} {
+      allow create: if true;
+      allow update: if true;
+      allow delete: if false;
+      allow read: if true;
+    }
+  }
+}

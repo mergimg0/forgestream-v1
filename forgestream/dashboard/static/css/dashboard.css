@@ -1,0 +1,385 @@
+/* ForgeStream Dashboard — Dark Navy Theme */
+
+/* ── Reset & Base ── */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background: #1a1a2e;
+    color: #e5e7eb;
+    min-height: 100vh;
+    padding: 16px;
+}
+
+/* ── Typography ── */
+h1 {
+    color: #0ff;
+    font-size: 1.5rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+}
+
+h2 {
+    color: #0ff;
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #0f3460;
+}
+
+p {
+    color: #9ca3af;
+    font-size: 0.85rem;
+}
+
+/* ── Dashboard Grid Layout ── */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+/* Row 1: Knowledge Graph — full width */
+.panel-knowledge-graph {
+    grid-column: 1 / -1;
+}
+
+/* Row 2: Evaluator + Entrainment — 2 cols */
+/* Row 3: Timeline — full width */
+.panel-timeline {
+    grid-column: 1 / -1;
+}
+
+/* Row 4: Emotion Timeline + Rapport — 2 cols */
+
+/* ── Panel Base ── */
+.panel {
+    background: #16213e;
+    border: 1px solid #0f3460;
+    border-radius: 10px;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.panel:hover {
+    border-color: #1a4080;
+    box-shadow: 0 0 12px rgba(0, 255, 255, 0.06);
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+/* ── Panel Header ── */
+.panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.panel-header h2 {
+    margin-bottom: 0;
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.panel-badge {
+    font-size: 0.7rem;
+    color: #6b7280;
+    background: #0f3460;
+    padding: 2px 8px;
+    border-radius: 12px;
+    letter-spacing: 0.05em;
+}
+
+/* ── SVG Defaults ── */
+svg {
+    display: block;
+    overflow: visible;
+}
+
+.svg-container {
+    width: 100%;
+}
+
+/* ── Axes & Grid Lines ── */
+.axis text {
+    fill: #9ca3af;
+    font-size: 11px;
+}
+
+.axis line,
+.axis path {
+    stroke: #374151;
+}
+
+.grid line {
+    stroke: #1f2937;
+    stroke-dasharray: 2, 4;
+}
+
+/* ── Tooltip ── */
+.tooltip {
+    position: absolute;
+    background: #0f172a;
+    border: 1px solid #0f3460;
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 12px;
+    color: #e5e7eb;
+    pointer-events: none;
+    z-index: 100;
+    max-width: 240px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+}
+
+.tooltip strong {
+    color: #0ff;
+    display: block;
+    margin-bottom: 4px;
+}
+
+/* ── Knowledge Graph ── */
+#knowledge-graph {
+    min-height: 400px;
+}
+
+.node circle {
+    cursor: pointer;
+    stroke: #1a1a2e;
+    stroke-width: 1.5;
+    transition: stroke 0.15s;
+}
+
+.node circle:hover {
+    stroke: #0ff;
+    stroke-width: 2;
+}
+
+.node text {
+    fill: #e5e7eb;
+    font-size: 10px;
+    pointer-events: none;
+    text-shadow: 0 1px 3px #000;
+}
+
+.link {
+    stroke: #374151;
+    stroke-opacity: 0.7;
+}
+
+/* ── Evaluator Trajectory ── */
+#evaluator-trajectory {
+    min-height: 200px;
+}
+
+.e-value-display {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #3b82f6;
+    font-variant-numeric: tabular-nums;
+}
+
+.axiom-indicators {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.axiom-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.axiom-dot.holds { background: #22c55e; }
+.axiom-dot.violated { background: #ef4444; }
+.axiom-dot.unknown { background: #6b7280; }
+
+.axiom-label {
+    font-size: 11px;
+    color: #9ca3af;
+}
+
+/* ── Meeting Timeline ── */
+#meeting-timeline {
+    min-height: 120px;
+}
+
+.event-marker {
+    cursor: pointer;
+    transition: opacity 0.15s;
+}
+
+.event-marker:hover {
+    opacity: 0.8;
+}
+
+/* ── Emotion Timeline ── */
+#emotion-timeline {
+    min-height: 220px;
+}
+
+.metric-toggle {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 10px;
+}
+
+.metric-btn {
+    background: #0f3460;
+    border: 1px solid #1a4080;
+    border-radius: 4px;
+    color: #9ca3af;
+    cursor: pointer;
+    font-size: 11px;
+    padding: 3px 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    transition: all 0.15s;
+}
+
+.metric-btn.active {
+    background: #1a4080;
+    color: #0ff;
+    border-color: #0ff;
+}
+
+.metric-btn:hover:not(.active) {
+    border-color: #374151;
+    color: #e5e7eb;
+}
+
+/* ── Entrainment Heatmap ── */
+#entrainment-heatmap {
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.heatmap-cell {
+    rx: 4;
+}
+
+/* ── Rapport Trajectory ── */
+#rapport-trajectory {
+    min-height: 220px;
+}
+
+.rapport-trend {
+    margin-top: 10px;
+    font-size: 12px;
+}
+
+.trend-up { color: #22c55e; }
+.trend-down { color: #ef4444; }
+.trend-flat { color: #9ca3af; }
+
+.disengagement-alert {
+    margin-top: 8px;
+    color: #ef4444;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.component-breakdown {
+    margin-top: 6px;
+    font-size: 11px;
+    color: #6b7280;
+    line-height: 1.6;
+}
+
+/* ── Legend ── */
+.legend text {
+    fill: #9ca3af;
+    font-size: 11px;
+}
+
+/* ── Loading / Empty State ── */
+.empty-state {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 150px;
+    color: #4b5563;
+    font-size: 13px;
+    font-style: italic;
+}
+
+/* ── Status Dot (live indicator) ── */
+.status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #22c55e;
+    display: inline-block;
+    margin-right: 6px;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+}
+
+/* ── Refresh indicator ── */
+.refresh-indicator {
+    position: fixed;
+    bottom: 16px;
+    right: 16px;
+    background: #16213e;
+    border: 1px solid #0f3460;
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-size: 11px;
+    color: #6b7280;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* ── Area Chart ── */
+.area-fill {
+    fill-opacity: 0.15;
+}
+
+/* ── Line Styles ── */
+.line-epi { stroke: #3b82f6; }
+.line-rapport { stroke: #f59e0b; }
+.line-arousal { stroke: #f97316; }
+.line-valence { stroke: #22c55e; }
+.line-dominance { stroke: #a78bfa; }
+
+/* ── Claim Markers on timeline ── */
+.claim-marker {
+    fill: #0ff;
+    opacity: 0.7;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0f172a;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #374151;
+    border-radius: 3px;
+}

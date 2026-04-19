@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+*.egg-info/
+.pytest_cache/
+dist/
+build/
+.venv/
+.secrets/
+.claude/
+
+# PII-sensitive data — expert profiles, recordings, meeting analysis
+data/expert_profiles/
+data/recordings/
+data/*_analysis*.md
+data/meeting_*.md

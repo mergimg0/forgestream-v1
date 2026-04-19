@@ -1,0 +1,7 @@
+fastapi>=0.115
+uvicorn>=0.32
+numpy>=1.26
+runpod>=1.7
+funasr>=1.0
+torch>=2.0
+modelscope>=1.9
